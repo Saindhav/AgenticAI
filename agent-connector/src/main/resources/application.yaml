@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: agent-connector
+  ai:
+    bedrock:
+      aws:
+        region: ${AWS_REGION:us-east-1}
+      converse:
+        chat:
+          options:
+            model: anthropic.claude-3-5-sonnet-20241022-v2:0
+            temperature: 0.1
+            max-tokens: 1024
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+ols:
+  base-url: ${OLS_BASE_URL:http://localhost:8089}
+  api-key: ${OLS_API_KEY:local-dev-ols-secret-key}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
